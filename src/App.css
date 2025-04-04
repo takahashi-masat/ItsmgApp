@@ -1,0 +1,455 @@
+:root {
+  --bg-color: #000000;          /* 背景色を完全な黒に */
+  --card-bg: #121212;           /* カード背景をより暗く */
+  --text-color: #ffffff;
+  --text-secondary: #8899a6;
+  --border-color: #2f3336;      /* 境界線の色を調整 */
+  --primary-color: #1da1f2;
+  --primary-hover: #1a91da;
+  --danger-color: #e0245e;
+  --danger-hover: #c01e51;
+  --success-color: #17bf63;
+  --avatar-bg: #333333;         /* アバター背景色を暗く */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.twitter-app {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+.app-header {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-form-container {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-control {
+  width: 100%;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 12px;
+  color: var(--text-color);
+  font-size: 16px;
+  resize: none;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.username-input {
+  font-weight: bold;
+}
+
+.tweet-button {
+  align-self: flex-end;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tweet-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.timeline {
+  flex: 1;
+}
+
+.loading, .no-posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.post-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--avatar-bg);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.post-content {
+  flex: 1;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.post-username {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.post-time {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.post-text {
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.action-button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.action-button span {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.reply-button:hover {
+  color: var(--primary-color);
+}
+
+.like-button:hover {
+  color: var(--danger-color);
+}
+
+.delete-button:hover {
+  color: var(--danger-color);
+}
+
+.post-delete-button {
+  color: var(--text-secondary);
+}
+
+.post-delete-button:hover {
+  color: var(--danger-color);
+}
+
+.show-replies-button {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 0;
+  margin-bottom: 10px;
+}
+
+.replies-container {
+  margin-left: 10px;
+  border-left: 2px solid var(--border-color);
+  padding-left: 15px;
+}
+
+.reply-card {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.reply-card:last-child {
+  border-bottom: none;
+}
+
+.reply-avatar {
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+}
+
+.reply-content {
+  flex: 1;
+}
+
+.reply-form {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.reply-input {
+  background-color: var(--bg-color);
+}
+
+.reply-form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 9999px;
+  margin-right: 10px;
+}
+
+.cancel-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.reply-submit-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reply-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reply-submit-button:not(:disabled):hover {
+  background-color: var(--primary-hover);
+}
+
+/* アイコンのスタイル */
+.icon-reply::before {
+  content: "↩";
+}
+
+.icon-heart::before {
+  content: "♥";
+}
+
+.icon-trash::before {
+  content: "🗑";
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 600px) {
+  .twitter-app {
+    max-width: 100%;
+    border: none;
+  }
+  
+  .post-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .post-actions {
+    justify-content: space-between;
+  }
+  
+  .action-button {
+    margin-right: 0;
+  }
+}
+/* 認証関連のスタイル */
+.auth-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--text-color);
+  font-size: 24px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.auth-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.2s;
+}
+
+.auth-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.auth-error {
+  color: var(--danger-color);
+  margin: 10px 0;
+  font-size: 14px;
+  background-color: rgba(224, 36, 94, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 3px solid var(--danger-color);
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 25px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.toggle-button:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.header-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.header-username {
+  margin-right: 15px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.logout-button {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

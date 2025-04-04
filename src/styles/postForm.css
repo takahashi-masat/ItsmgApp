@@ -1,0 +1,48 @@
+.post-form {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.post-form-content {
+  width: 100%;
+  min-height: 100px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: #f8f4e3;
+  color: #000000;
+  font-size: 16px;
+  resize: vertical;
+  margin-bottom: 15px;
+  transition: border-color 0.2s;
+}
+
+.post-form-content:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.post-form-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  float: right;
+}
+
+.post-form-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.post-form-button:disabled {
+  background-color: var(--disabled-color);
+  cursor: not-allowed;
+} 
