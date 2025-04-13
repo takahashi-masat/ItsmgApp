@@ -1,12 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { PostsProvider } from './contexts/PostsContext';
 import { TasksProvider } from './contexts/TasksContext';
 import Header from './components/UI/Header';
 import AuthForm from './components/Auth/AuthForm';
-import PostList from './components/Post/PostList';
-import PostForm from './components/Post/PostForm';
 import TaskList from './components/Task/TaskList';
 import TaskPage from './components/Pages/TaskPage';
 import Loading from './components/UI/Loading';
@@ -40,28 +38,6 @@ const PublicRoute = ({ children }) => {
   }
   
   return !currentUser ? children : <Navigate to="/" />;
-};
-
-// 管理者用のルート
-const AdminRoute = ({ children }) => {
-  const { currentUser, loading, isAdmin } = useAuth();
-  
-  if (loading) {
-    return <Loading />;
-  }
-  
-  // 管理者でない場合はホームにリダイレクト
-  return currentUser && isAdmin ? children : <Navigate to="/" />;
-};
-
-// ログインページコンポーネント
-const Login = () => {
-  return (
-    <div className="container">
-      <h1 className="app-title">ITSMG週報アプリ</h1>
-      <AuthForm />
-    </div>
-  );
 };
 
 // ヘッダーを条件付きで表示するコンポーネント
