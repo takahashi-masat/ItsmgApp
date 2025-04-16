@@ -47,7 +47,6 @@ export const PostsProvider = ({ children }) => {
       try {
         const q = query(
           collection(db, "posts"), 
-          where("isReply", "==", false),
           orderBy("createdAt", "desc")
         );
         
@@ -55,27 +54,32 @@ export const PostsProvider = ({ children }) => {
           const postList = [];
           
           for (const docSnapshot of querySnapshot.docs) {
+            console.log("ドキュメントデータ:", docSnapshot.id, docSnapshot.data());
+            
             const postData = {
               id: docSnapshot.id,
               ...docSnapshot.data(),
               createdAt: docSnapshot.data().createdAt?.toDate() || new Date(),
+              isReply: docSnapshot.data().isReply || false,
               replies: []
             };
             
-            const repliesQuery = query(
-              collection(db, "posts"),
-              where("replyToId", "==", docSnapshot.id),
-              orderBy("createdAt", "asc")
-            );
-            
-            const repliesSnapshot = await getDocs(repliesQuery);
-            postData.replies = repliesSnapshot.docs.map(replyDoc => ({
-              id: replyDoc.id,
-              ...replyDoc.data(),
-              createdAt: replyDoc.data().createdAt?.toDate() || new Date()
-            }));
-            
-            postList.push(postData);
+            if (!postData.isReply) {
+              const repliesQuery = query(
+                collection(db, "posts"),
+                where("replyToId", "==", docSnapshot.id),
+                orderBy("createdAt", "asc")
+              );
+              
+              const repliesSnapshot = await getDocs(repliesQuery);
+              postData.replies = repliesSnapshot.docs.map(replyDoc => ({
+                id: replyDoc.id,
+                ...replyDoc.data(),
+                createdAt: replyDoc.data().createdAt?.toDate() || new Date()
+              }));
+              
+              postList.push(postData);
+            }
           }
           
           setPosts(postList);
