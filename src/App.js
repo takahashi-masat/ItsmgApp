@@ -4,7 +4,7 @@
 // 概要: このファイルはReactアプリケーションのメインコンポーネントを定義し、ルーティングを管理します。
 //       認証状態に応じたページの表示制御を行い、ユーザーインターフェースの基本構造を提供します。
 // 使用技術: React, React Router, Firebase
-// 実行タイミング: webアプリにアクセスしたタイミングで一度だけ起動 (高橋さんの修正ああああ)
+// 実行タイミング: webアプリにアクセスしたタイミングで一度だけ起動 (高橋さん二回目の修正)
 
 import React from 'react'; // Reactライブラリをインポートします。ユーザーインターフェースを構築するために使用します。
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'; // React Routerを使用してルーティングを管理します。
